@@ -25,10 +25,6 @@
 		8A1D65122622C612004FD069 /* Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D650B2622C611004FD069 /* Handlers.swift */; };
 		8A1D65132622C612004FD069 /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D650D2622C612004FD069 /* LocalUser.swift */; };
 		8A1D65142622C612004FD069 /* UserModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D650E2622C612004FD069 /* UserModal.swift */; };
-		8A1D65232622C61D004FD069 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D651C2622C61D004FD069 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
-		8A1D65242622C61D004FD069 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D651D2622C61D004FD069 /* TPKeyboardAvoidingTableView.m */; };
-		8A1D65252622C61D004FD069 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D651E2622C61D004FD069 /* TPKeyboardAvoidingScrollView.m */; };
-		8A1D65262622C61D004FD069 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D65202622C61D004FD069 /* TPKeyboardAvoidingCollectionView.m */; };
 		8A1D65382622C666004FD069 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D652D2622C666004FD069 /* ForgotPasswordVC.swift */; };
 		8A1D65392622C666004FD069 /* ForgotPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D652E2622C666004FD069 /* ForgotPasswordVM.swift */; };
 		8A1D653A2622C666004FD069 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D65302622C666004FD069 /* RegisterVC.swift */; };
@@ -36,6 +32,13 @@
 		8A1D653C2622C666004FD069 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D65332622C666004FD069 /* LogInVC.swift */; };
 		8A1D653D2622C666004FD069 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D65362622C666004FD069 /* BaseVC.swift */; };
 		8A1D653E2622C666004FD069 /* BaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D65372622C666004FD069 /* BaseVM.swift */; };
+		8A292B712625451300116262 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A292B702625451300116262 /* GoogleService-Info.plist */; };
+		8A292B7D2625563200116262 /* OrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A292B7C2625563200116262 /* OrderDetailsVC.swift */; };
+		8A292B87262573F800116262 /* AccountMainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A292B86262573F800116262 /* AccountMainTVC.swift */; };
+		8A292B902625745B00116262 /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A292B8F2625745B00116262 /* OrderVC.swift */; };
+		8A292B98262574C200116262 /* AccountTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A292B97262574C200116262 /* AccountTVC.swift */; };
+		8A7CDD5B26287C67006D51DD /* StoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7CDD5A26287C67006D51DD /* StoreVC.swift */; };
+		8A7CDD6326287C74006D51DD /* StoreVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7CDD6226287C74006D51DD /* StoreVM.swift */; };
 		FE6A7CE7AF5F0685C46C13F3 /* Pods_CafeManager_COBSCCOMP192P_011_Pasan_Edirisooriya_CafeManager_COBSCCOMP192P_011_Pasan_EdirisooriyaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740A670B75509A1A2F4C7F41 /* Pods_CafeManager_COBSCCOMP192P_011_Pasan_Edirisooriya_CafeManager_COBSCCOMP192P_011_Pasan_EdirisooriyaUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,15 +86,6 @@
 		8A1D650B2622C611004FD069 /* Handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Handlers.swift; sourceTree = "<group>"; };
 		8A1D650D2622C612004FD069 /* LocalUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		8A1D650E2622C612004FD069 /* UserModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModal.swift; sourceTree = "<group>"; };
-		8A1D651A2622C61D004FD069 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
-		8A1D651B2622C61D004FD069 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
-		8A1D651C2622C61D004FD069 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
-		8A1D651D2622C61D004FD069 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
-		8A1D651E2622C61D004FD069 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
-		8A1D651F2622C61D004FD069 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
-		8A1D65202622C61D004FD069 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
-		8A1D65212622C61D004FD069 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
-		8A1D65222622C61D004FD069 /* BarHopper-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BarHopper-Bridging-Header.h"; sourceTree = "<group>"; };
 		8A1D652D2622C666004FD069 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		8A1D652E2622C666004FD069 /* ForgotPasswordVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVM.swift; sourceTree = "<group>"; };
 		8A1D65302622C666004FD069 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
@@ -99,6 +93,13 @@
 		8A1D65332622C666004FD069 /* LogInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		8A1D65362622C666004FD069 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		8A1D65372622C666004FD069 /* BaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVM.swift; sourceTree = "<group>"; };
+		8A292B702625451300116262 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8A292B7C2625563200116262 /* OrderDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsVC.swift; sourceTree = "<group>"; };
+		8A292B86262573F800116262 /* AccountMainTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMainTVC.swift; sourceTree = "<group>"; };
+		8A292B8F2625745B00116262 /* OrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = "<group>"; };
+		8A292B97262574C200116262 /* AccountTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTVC.swift; sourceTree = "<group>"; };
+		8A7CDD5A26287C67006D51DD /* StoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreVC.swift; sourceTree = "<group>"; };
+		8A7CDD6226287C74006D51DD /* StoreVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreVM.swift; sourceTree = "<group>"; };
 		8BC7DCED120B5710BE444636 /* Pods_CafeManager_COBSCCOMP192P_011_Pasan_EdirisooriyaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CafeManager_COBSCCOMP192P_011_Pasan_EdirisooriyaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		959CF42730268470EB18CCBF /* Pods-CafeManager-COBSCCOMP192P-011-Pasan_Edirisooriya.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeManager-COBSCCOMP192P-011-Pasan_Edirisooriya.debug.xcconfig"; path = "Target Support Files/Pods-CafeManager-COBSCCOMP192P-011-Pasan_Edirisooriya/Pods-CafeManager-COBSCCOMP192P-011-Pasan_Edirisooriya.debug.xcconfig"; sourceTree = "<group>"; };
 		9DD3DE6944EA995BB6F7C641 /* Pods-CafeManager-COBSCCOMP192P-011-Pasan_EdirisooriyaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeManager-COBSCCOMP192P-011-Pasan_EdirisooriyaTests.release.xcconfig"; path = "Target Support Files/Pods-CafeManager-COBSCCOMP192P-011-Pasan_EdirisooriyaTests/Pods-CafeManager-COBSCCOMP192P-011-Pasan_EdirisooriyaTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -148,9 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				8A1D649F2622C372004FD069 /* CafeManager-COBSCCOMP192P-011-Pasan_Edirisooriya */,
-				8A1D650C2622C612004FD069 /* Models */,
-				8A1D65072622C611004FD069 /* Utilities */,
-				8A1D65182622C61D004FD069 /* Libraries */,
 				8A1D64B62622C373004FD069 /* CafeManager-COBSCCOMP192P-011-Pasan_EdirisooriyaTests */,
 				8A1D64C12622C373004FD069 /* CafeManager-COBSCCOMP192P-011-Pasan_EdirisooriyaUITests */,
 				8A1D649E2622C372004FD069 /* Products */,
@@ -178,6 +176,8 @@
 				8A1D652A2622C666004FD069 /* VCs+VMs */,
 				8A1D64F32622C4C5004FD069 /* Launchscreen */,
 				8A1D64AE2622C372004FD069 /* Info.plist */,
+				8A1D650C2622C612004FD069 /* Models */,
+				8A1D65072622C611004FD069 /* Utilities */,
 			);
 			path = "CafeManager-COBSCCOMP192P-011-Pasan_Edirisooriya";
 			sourceTree = "<group>";
@@ -231,6 +231,7 @@
 		8A1D64F42622C4D8004FD069 /* Support FIles */ = {
 			isa = PBXGroup;
 			children = (
+				8A292B702625451300116262 /* GoogleService-Info.plist */,
 				8A1D64A92622C372004FD069 /* Assets.xcassets */,
 			);
 			path = "Support FIles";
@@ -256,36 +257,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		8A1D65182622C61D004FD069 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				8A1D65192622C61D004FD069 /* TPKeyboardAvoidingScrollView */,
-			);
-			path = Libraries;
-			sourceTree = "<group>";
-		};
-		8A1D65192622C61D004FD069 /* TPKeyboardAvoidingScrollView */ = {
-			isa = PBXGroup;
-			children = (
-				8A1D651A2622C61D004FD069 /* TPKeyboardAvoidingScrollView.h */,
-				8A1D651B2622C61D004FD069 /* TPKeyboardAvoidingCollectionView.h */,
-				8A1D651C2622C61D004FD069 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
-				8A1D651D2622C61D004FD069 /* TPKeyboardAvoidingTableView.m */,
-				8A1D651E2622C61D004FD069 /* TPKeyboardAvoidingScrollView.m */,
-				8A1D651F2622C61D004FD069 /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
-				8A1D65202622C61D004FD069 /* TPKeyboardAvoidingCollectionView.m */,
-				8A1D65212622C61D004FD069 /* TPKeyboardAvoidingTableView.h */,
-				8A1D65222622C61D004FD069 /* BarHopper-Bridging-Header.h */,
-			);
-			path = TPKeyboardAvoidingScrollView;
-			sourceTree = "<group>";
-		};
 		8A1D652A2622C666004FD069 /* VCs+VMs */ = {
 			isa = PBXGroup;
 			children = (
 				8A1D652B2622C666004FD069 /* Auth */,
 				8A1D65342622C666004FD069 /* Main */,
 				8A1D65352622C666004FD069 /* Base */,
+				8A292B85262573DC00116262 /* Utilities */,
 			);
 			path = "VCs+VMs";
 			sourceTree = "<group>";
@@ -329,6 +307,7 @@
 		8A1D65342622C666004FD069 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				8A292B7B2625561A00116262 /* Order Details */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -340,6 +319,50 @@
 				8A1D65372622C666004FD069 /* BaseVM.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		8A292B7B2625561A00116262 /* Order Details */ = {
+			isa = PBXGroup;
+			children = (
+				8A292B7C2625563200116262 /* OrderDetailsVC.swift */,
+			);
+			path = "Order Details";
+			sourceTree = "<group>";
+		};
+		8A292B84262573D400116262 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				8A292B86262573F800116262 /* AccountMainTVC.swift */,
+				8A292B97262574C200116262 /* AccountTVC.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		8A292B85262573DC00116262 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8A7CDD5926287B6B006D51DD /* Store */,
+				8A292B8E2625744300116262 /* Orders */,
+				8A292B84262573D400116262 /* Account */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		8A292B8E2625744300116262 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				8A292B8F2625745B00116262 /* OrderVC.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
+		8A7CDD5926287B6B006D51DD /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				8A7CDD5A26287C67006D51DD /* StoreVC.swift */,
+				8A7CDD6226287C74006D51DD /* StoreVM.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		AD2EF18F4DE8F3E06D3DF23D /* Pods */ = {
@@ -469,6 +492,7 @@
 				8A1D65002622C50B004FD069 /* Utilities.storyboard in Resources */,
 				8A1D64AA2622C372004FD069 /* Assets.xcassets in Resources */,
 				8A1D64A82622C372004FD069 /* Main.storyboard in Resources */,
+				8A292B712625451300116262 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,24 +621,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A1D65142622C612004FD069 /* UserModal.swift in Sources */,
+				8A292B87262573F800116262 /* AccountMainTVC.swift in Sources */,
 				8A1D64A12622C372004FD069 /* AppDelegate.swift in Sources */,
+				8A292B98262574C200116262 /* AccountTVC.swift in Sources */,
 				8A1D65102622C612004FD069 /* Extentions.swift in Sources */,
 				8A1D653D2622C666004FD069 /* BaseVC.swift in Sources */,
+				8A7CDD5B26287C67006D51DD /* StoreVC.swift in Sources */,
 				8A1D65392622C666004FD069 /* ForgotPasswordVM.swift in Sources */,
 				8A1D64A32622C372004FD069 /* SceneDelegate.swift in Sources */,
 				8A1D65132622C612004FD069 /* LocalUser.swift in Sources */,
 				8A1D65112622C612004FD069 /* Validator.swift in Sources */,
 				8A1D653E2622C666004FD069 /* BaseVM.swift in Sources */,
 				8A1D653C2622C666004FD069 /* LogInVC.swift in Sources */,
+				8A292B7D2625563200116262 /* OrderDetailsVC.swift in Sources */,
 				8A1D650F2622C612004FD069 /* RealmService.swift in Sources */,
 				8A1D653A2622C666004FD069 /* RegisterVC.swift in Sources */,
 				8A1D65382622C666004FD069 /* ForgotPasswordVC.swift in Sources */,
-				8A1D65242622C61D004FD069 /* TPKeyboardAvoidingTableView.m in Sources */,
-				8A1D65252622C61D004FD069 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				8A1D653B2622C666004FD069 /* RegisterVM.swift in Sources */,
 				8A1D65122622C612004FD069 /* Handlers.swift in Sources */,
-				8A1D65262622C61D004FD069 /* TPKeyboardAvoidingCollectionView.m in Sources */,
-				8A1D65232622C61D004FD069 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				8A292B902625745B00116262 /* OrderVC.swift in Sources */,
+				8A7CDD6326287C74006D51DD /* StoreVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,7 +823,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pasan.CafeManager-COBSCCOMP192P-011-Pasan-Edirisooriya";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pasan.CafeManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -816,7 +842,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pasan.CafeManager-COBSCCOMP192P-011-Pasan-Edirisooriya";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pasan.CafeManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

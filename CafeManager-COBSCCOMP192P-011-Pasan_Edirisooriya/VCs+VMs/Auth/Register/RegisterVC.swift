@@ -14,10 +14,12 @@ class RegisterVC: BaseVC {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPhoneNo: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        hideKeyboardWhenTappedAround()
+        addListers()
         // Do any additional setup after loading the view.
     }
     
@@ -49,10 +51,9 @@ class RegisterVC: BaseVC {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    func registerUser(){
-        startLoading()
+    func registerUser(){ 
         Auth.auth().createUser(withEmail: txtEmail.text!, password: txtPassword.text!) { authResult, error in
-          
+            self.stopLoading()
             if let user = authResult?.user {
                 LocalUser.saveLoginData(user: UserModal(id: user.uid, avatarUrl: user.photoURL?.absoluteString ?? "", phoneNo: self.txtPhoneNo.text!, email: user.email ?? ""))
                 let userAttrs = ["phone_number": self.txtPhoneNo.text!]
@@ -65,7 +66,7 @@ class RegisterVC: BaseVC {
                         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                         self.present(alert, animated: true)
                     }else{
-                        let nc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "LocationPermissionNC")
+                        let nc = UIStoryboard.init(name: "TabBar", bundle: Bundle.main).instantiateViewController(withIdentifier: "TabBarVC")
                         self.resetWindow(with: nc)
                     }
                 }
@@ -127,4 +128,28 @@ class RegisterVC: BaseVC {
     
 }
 
+//MARK: Methods to manage keybaord
+
+extension RegisterVC{
+    func addListers(){
+        NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardDidShow(notification:)),
+        name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardDidHide(notification:)),
+        name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+    
+    //MARK: Methods to manage keybaord
+    @objc func keyboardDidShow(notification: NSNotification) {
+        let info = notification.userInfo
+        let keyBoardSize = info![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+        scrollView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyBoardSize.height, right: 0.0)
+        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyBoardSize.height, right: 0.0)
+    }
+
+    @objc func keyboardDidHide(notification: NSNotification) {
+        
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
+    }
+}
 

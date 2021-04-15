@@ -12,12 +12,12 @@
         <!--Sign Up-->
         <scene sceneID="sWI-Hg-K0M">
             <objects>
-                <viewController storyboardIdentifier="RegisterVC" id="Rhg-63-MIU" customClass="RegisterVC" customModule="Pasan_Edirisooriya_COBSCCOMP192P_011_Cafe__Manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterVC" id="Rhg-63-MIU" customClass="RegisterVC" customModule="CafeManager_COBSCCOMP192P_011_Pasan_Edirisooriya" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vrI-aE-oma">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="662"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQi-X3-cAS" customClass="TPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQi-X3-cAS">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="662"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q5R-7U-ts3">
@@ -127,6 +127,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <size key="freeformSize" width="414" height="750"/>
                     <connections>
+                        <outlet property="scrollView" destination="oQi-X3-cAS" id="Hyv-2y-ehc"/>
                         <outlet property="txtEmail" destination="PUB-m3-Eo2" id="0vs-sJ-X2Y"/>
                         <outlet property="txtPassword" destination="rCF-I2-NYP" id="5lH-MB-RnI"/>
                         <outlet property="txtPhoneNo" destination="SDN-zX-iZk" id="oMG-5E-Ckv"/>
@@ -139,12 +140,12 @@
         <!--Forgot Password-->
         <scene sceneID="soQ-0z-Wbv">
             <objects>
-                <viewController storyboardIdentifier="ForgotPasswordVC" id="FQT-uF-sLg" customClass="ForgotPasswordVC" customModule="Pasan_Edirisooriya_COBSCCOMP192P_011_Cafe__Manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ForgotPasswordVC" id="FQT-uF-sLg" customClass="ForgotPasswordVC" customModule="CafeManager_COBSCCOMP192P_011_Pasan_Edirisooriya" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b7t-9s-NGH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOc-NM-ZRF" customClass="TPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOc-NM-ZRF">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1g3-98-G7P">
@@ -248,6 +249,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="scrollView" destination="ZOc-NM-ZRF" id="Pki-wK-Fo2"/>
                         <outlet property="txtEmail" destination="GdV-sj-chm" id="S62-ac-Kly"/>
                     </connections>
                 </viewController>
@@ -258,12 +260,12 @@
         <!--Log In-->
         <scene sceneID="GAg-kF-w2p">
             <objects>
-                <viewController storyboardIdentifier="LogInVC" id="tGW-zd-SNk" customClass="LogInVC" customModule="Pasan_Edirisooriya_COBSCCOMP192P_011_Cafe__Manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogInVC" id="tGW-zd-SNk" customClass="LogInVC" customModule="CafeManager_COBSCCOMP192P_011_Pasan_Edirisooriya" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vjc-QR-rmZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OsO-YM-XKd" customClass="TPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OsO-YM-XKd">
                                 <rect key="frame" x="0.0" y="88" width="414" height="612"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPU-68-Gpy">
@@ -429,6 +431,7 @@
                     </navigationItem>
                     <size key="freeformSize" width="414" height="700"/>
                     <connections>
+                        <outlet property="scrollView" destination="OsO-YM-XKd" id="g8s-Br-dQy"/>
                         <outlet property="txtEmail" destination="NC9-BC-bWs" id="FZt-3B-vi9"/>
                         <outlet property="txtPassword" destination="vCg-Fk-9Rt" id="RiL-3x-Kvx"/>
                     </connections>
