@@ -102,7 +102,7 @@ class StoreVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDe
     @IBAction func didTappedOnSell(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
     }
-  
+    
     @IBAction func didTappedOnDropDownCategory(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if sender.isSelected{
@@ -113,7 +113,7 @@ class StoreVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDe
     }
     @IBAction func didTappedOnPickImage(_ sender: UIButton) {
         let alert = UIAlertController(title: "Change Profile Picture", message: nil, preferredStyle: .actionSheet)
-  
+        
         alert.addAction(UIAlertAction(title: "Choose from Library", style: .default, handler: {(action) in
             let picker = UIImagePickerController()
             picker.sourceType = .photoLibrary
@@ -148,7 +148,7 @@ extension StoreVC{
         }
         
         guard let image = pickedImage.scaleAndCrop(withAspect: true, to: 200),
-            let imageData = image.pngData() else {
+              let imageData = image.pngData() else {
             picker.dismiss(animated: true, completion: nil)
             return
         }
@@ -158,27 +158,27 @@ extension StoreVC{
         self.imgItem.image = image
         self.pickedImage = imageData
         // Upload the new profile image to Firebase Storage
-//        let storageRef = Storage.storage().reference().child("shared/\(user.uid)/profile-400x400.png")
-//        let metadata = StorageMetadata(dictionary: ["contentType": "image/png"])
-//        let uploadTask = storageRef.putData(imageData, metadata: metadata) { (metadata, error) in
-//            guard metadata != nil else {
-//                print("Error uploading image to Firebase Storage: \(error?.localizedDescription)")
-//                return
-//            }
-//            // Metadata dictionary: bucket, contentType, downloadTokens, downloadURL, [file]name, updated, et al
-//
-//            // Log the event with Firebase Analytics
-//            Analytics.logEvent("User_NewProfileImage", parameters: nil)
-//
-//            // Create a thumbnail image for future use, too
-//            // TODO: Move this to a server-side background worker task
-//            guard let image = pickedImage.scaleAndCrop(withAspect: true, to: 40),
-//                  let imageData = image.pngData() else {
-//                return
-//            }
-//            let storageRef = Storage.storage().reference().child("shared/\(user.uid)/profile-80x80.png")
-//            storageRef.putData(imageData, metadata: StorageMetadata(dictionary: ["contentType": "image/png"]))
-//        }
+        //        let storageRef = Storage.storage().reference().child("shared/\(user.uid)/profile-400x400.png")
+        //        let metadata = StorageMetadata(dictionary: ["contentType": "image/png"])
+        //        let uploadTask = storageRef.putData(imageData, metadata: metadata) { (metadata, error) in
+        //            guard metadata != nil else {
+        //                print("Error uploading image to Firebase Storage: \(error?.localizedDescription)")
+        //                return
+        //            }
+        //            // Metadata dictionary: bucket, contentType, downloadTokens, downloadURL, [file]name, updated, et al
+        //
+        //            // Log the event with Firebase Analytics
+        //            Analytics.logEvent("User_NewProfileImage", parameters: nil)
+        //
+        //            // Create a thumbnail image for future use, too
+        //            // TODO: Move this to a server-side background worker task
+        //            guard let image = pickedImage.scaleAndCrop(withAspect: true, to: 40),
+        //                  let imageData = image.pngData() else {
+        //                return
+        //            }
+        //            let storageRef = Storage.storage().reference().child("shared/\(user.uid)/profile-80x80.png")
+        //            storageRef.putData(imageData, metadata: StorageMetadata(dictionary: ["contentType": "image/png"]))
+        //        }
         
         picker.dismiss(animated: true, completion: nil)
     }
@@ -186,7 +186,7 @@ extension StoreVC{
     fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
         return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
     }
-
+    
     // Helper function inserted by Swift 4.2 migrator.
     fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
         return input.rawValue
@@ -242,7 +242,7 @@ extension StoreVC{
                     }else if self.selectedSegment == .Menu{
                         self.itemTableView.reloadData()
                     }
- 
+                    
                 }
             }
         }
@@ -330,7 +330,7 @@ extension StoreVC:UITableViewDelegate,UITableViewDataSource{
             
             return cell
         }
-      
+        
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
