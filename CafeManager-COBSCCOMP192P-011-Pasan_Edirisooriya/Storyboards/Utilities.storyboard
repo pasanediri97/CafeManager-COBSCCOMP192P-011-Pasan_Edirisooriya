@@ -80,7 +80,7 @@
                                                     <action selector="didTappedOnAddCategory:" destination="Jey-5s-IEu" eventType="touchUpInside" id="dnY-NL-nep"/>
                                                 </connections>
                                             </button>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TOR-yX-zkT">
+                                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TOR-yX-zkT">
                                                 <rect key="frame" x="0.0" y="208.5" width="414" height="478.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
@@ -166,15 +166,32 @@
                                                                         <color key="tintColor" systemColor="systemYellowColor"/>
                                                                         <state key="normal" image="arrowtriangle.down.fill" catalog="system"/>
                                                                         <state key="selected" image="arrowtriangle.up.fill" catalog="system"/>
+                                                                        <connections>
+                                                                            <action selector="didTappedOnDropDownCategory:" destination="Jey-5s-IEu" eventType="touchUpInside" id="gVY-cN-rZR"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
-                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nhT-dr-ism">
+                                                            <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nhT-dr-ism">
                                                                 <rect key="frame" x="20" y="419.5" width="374" height="0.0"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" id="tXs-iF-Vtx"/>
                                                                 </constraints>
+                                                                <prototypes>
+                                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="categoryDropdownCell" id="3x1-ck-37f">
+                                                                        <rect key="frame" x="0.0" y="28" width="374" height="0.0"/>
+                                                                        <autoresizingMask key="autoresizingMask"/>
+                                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3x1-ck-37f" id="Zfs-oa-lBz">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="0.0"/>
+                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                        </tableViewCellContentView>
+                                                                    </tableViewCell>
+                                                                </prototypes>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="Jey-5s-IEu" id="CK0-Ys-SlG"/>
+                                                                    <outlet property="delegate" destination="Jey-5s-IEu" id="cwF-z5-dFW"/>
+                                                                </connections>
                                                             </tableView>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Discount (%)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rhc-zr-efh">
                                                                 <rect key="frame" x="20" y="439.5" width="374" height="34"/>
@@ -214,6 +231,9 @@
                                                                         <color key="tintColor" systemColor="systemYellowColor"/>
                                                                         <state key="normal" image="checkmark.square" catalog="system"/>
                                                                         <state key="selected" image="checkmark.square.fill" catalog="system"/>
+                                                                        <connections>
+                                                                            <action selector="didTappedOnSell:" destination="Jey-5s-IEu" eventType="touchUpInside" id="pmD-1Q-5Uk"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -231,6 +251,9 @@
                                                                         </constraints>
                                                                         <color key="tintColor" systemColor="systemYellowColor"/>
                                                                         <state key="normal" image="camera.fill" catalog="system"/>
+                                                                        <connections>
+                                                                            <action selector="didTappedOnPickImage:" destination="Jey-5s-IEu" eventType="touchUpInside" id="3Tf-qP-De2"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -314,13 +337,22 @@
                     <connections>
                         <outlet property="btnAddCategory" destination="5tE-ni-9Ve" id="T11-oG-znf"/>
                         <outlet property="btnAddItem" destination="CT3-4C-r2H" id="4Ib-TY-k37"/>
+                        <outlet property="btnCheck" destination="P4N-GM-CrS" id="QhN-cZ-mHt"/>
+                        <outlet property="categoryTableHeight" destination="tXs-iF-Vtx" id="CIi-YT-jfn"/>
                         <outlet property="categoryTableView" destination="TOR-yX-zkT" id="tiL-8C-7Te"/>
                         <outlet property="categoryView" destination="fZi-Qf-3MO" id="qPI-Ab-Ndu"/>
                         <outlet property="foodPreviewTableView" destination="F03-ef-bZY" id="dpx-gd-35h"/>
                         <outlet property="foodPreviewView" destination="LCC-wQ-EcT" id="F6o-Cx-JG0"/>
+                        <outlet property="imgItem" destination="7xc-52-qqr" id="PTg-tY-4rV"/>
+                        <outlet property="itemTableView" destination="nhT-dr-ism" id="vlV-eq-juR"/>
                         <outlet property="itemView" destination="NJ7-xN-2Hb" id="mfb-0v-wLa"/>
                         <outlet property="scrollView" destination="StU-lv-t4C" id="abj-kh-KIn"/>
                         <outlet property="txtCategory" destination="XNb-bN-Ulo" id="fjP-sA-wEp"/>
+                        <outlet property="txtDescription" destination="JeX-Cy-2eT" id="q6w-wG-8bY"/>
+                        <outlet property="txtDiscount" destination="Rhc-zr-efh" id="zJ2-HZ-JeJ"/>
+                        <outlet property="txtItem" destination="293-gf-GOJ" id="7r2-rw-eq1"/>
+                        <outlet property="txtPrice" destination="eld-1A-g7S" id="369-6P-esX"/>
+                        <outlet property="txtSelectedCategory" destination="Oti-Ql-qvV" id="OXw-G2-b2z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSv-ge-fgc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -375,7 +407,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CeU-II-3WA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1420" y="779"/>
+            <point key="canvasLocation" x="1420" y="877"/>
         </scene>
         <!--Orders-->
         <scene sceneID="bxW-JI-tF1">
@@ -397,7 +429,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bKM-Rf-3UQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="412" y="779"/>
+            <point key="canvasLocation" x="345" y="877"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Ale-4o-0CM">
@@ -604,7 +636,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s6s-a5-lNC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1421.7391304347827" y="1473.8839285714284"/>
+            <point key="canvasLocation" x="1419" y="1568"/>
         </scene>
         <!--Account-->
         <scene sceneID="xOh-st-6Fr">
@@ -626,7 +658,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vjI-Si-btZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="412" y="1474"/>
+            <point key="canvasLocation" x="345" y="1568"/>
         </scene>
     </scenes>
     <resources>

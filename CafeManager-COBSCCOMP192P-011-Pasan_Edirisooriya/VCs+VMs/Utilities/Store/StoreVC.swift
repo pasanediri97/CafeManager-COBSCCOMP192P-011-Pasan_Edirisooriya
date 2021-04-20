@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class StoreVC: BaseVC {
+class StoreVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var selectedSegment:SelectedSegment = .Preview
     let db = Firestore.firestore()
@@ -26,8 +26,19 @@ class StoreVC: BaseVC {
     var categories:[Category] = []
     
     //MARK: Item
+    @IBOutlet weak var imgItem: UIImageView!
+    @IBOutlet weak var itemTableView: UITableView!
     @IBOutlet weak var btnAddItem: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var btnCheck: UIButton!
+    @IBOutlet weak var categoryTableHeight: NSLayoutConstraint!
+    @IBOutlet weak var txtItem: UITextField!
+    @IBOutlet weak var txtDescription: UITextField!
+    @IBOutlet weak var txtPrice: UITextField!
+    @IBOutlet weak var txtSelectedCategory: UITextField!
+    @IBOutlet weak var txtDiscount: UITextField!
+    var selectedCategory:Category?
+    var pickedImage:Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,10 +73,11 @@ class StoreVC: BaseVC {
             foodPreviewView.isHidden = false
             hideViews(views: [categoryView,itemView])
         case .Category:
-            getData()
+            getCategories()
             categoryView.isHidden = false
             hideViews(views: [foodPreviewView,itemView])
         case .Menu:
+            getCategories()
             itemView.isHidden = false
             hideViews(views: [categoryView,foodPreviewView])
         }
@@ -81,19 +93,104 @@ class StoreVC: BaseVC {
         addCategory()
     }
     
+    //MARK: Item Actions
+    
     @IBAction func didTappedOnAddItem(_ sender: Any) {
         
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
+    @IBAction func didTappedOnSell(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+    }
+  
+    @IBAction func didTappedOnDropDownCategory(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected{
+            categoryTableHeight.constant =  CGFloat(categories.count * 30)
+        }else{
+            categoryTableHeight.constant = 0
+        }
+    }
+    @IBAction func didTappedOnPickImage(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Change Profile Picture", message: nil, preferredStyle: .actionSheet)
+  
+        alert.addAction(UIAlertAction(title: "Choose from Library", style: .default, handler: {(action) in
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.modalPresentationStyle = .popover // for iPad
+            picker.popoverPresentationController?.sourceView = sender
+            picker.popoverPresentationController?.sourceRect = sender.bounds
+            picker.delegate = self
+            self.present(picker, animated: true, completion: {() -> Void in })
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {(action) in
+        }))
+        self.present(alert, animated: true, completion: {() -> Void in })
+    }
+    
+}
+
+extension StoreVC{
+    // After the user cancels the picer, revert and do nothing
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    // After the user picks an image, update the view and Firebase Storage
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        
+        
+        guard let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else {
+            picker.dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        guard let image = pickedImage.scaleAndCrop(withAspect: true, to: 200),
+            let imageData = image.pngData() else {
+            picker.dismiss(animated: true, completion: nil)
+            return
+        }
+        // TODO: Handle @1x, @3x sizes and on the Storyboard, turn off Content Mode = Aspect Fill (and Clip to Bounds = true)
+        
+        // Display the picked image
+        self.imgItem.image = image
+        self.pickedImage = imageData
+        // Upload the new profile image to Firebase Storage
+//        let storageRef = Storage.storage().reference().child("shared/\(user.uid)/profile-400x400.png")
+//        let metadata = StorageMetadata(dictionary: ["contentType": "image/png"])
+//        let uploadTask = storageRef.putData(imageData, metadata: metadata) { (metadata, error) in
+//            guard metadata != nil else {
+//                print("Error uploading image to Firebase Storage: \(error?.localizedDescription)")
+//                return
+//            }
+//            // Metadata dictionary: bucket, contentType, downloadTokens, downloadURL, [file]name, updated, et al
+//
+//            // Log the event with Firebase Analytics
+//            Analytics.logEvent("User_NewProfileImage", parameters: nil)
+//
+//            // Create a thumbnail image for future use, too
+//            // TODO: Move this to a server-side background worker task
+//            guard let image = pickedImage.scaleAndCrop(withAspect: true, to: 40),
+//                  let imageData = image.pngData() else {
+//                return
+//            }
+//            let storageRef = Storage.storage().reference().child("shared/\(user.uid)/profile-80x80.png")
+//            storageRef.putData(imageData, metadata: StorageMetadata(dictionary: ["contentType": "image/png"]))
+//        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    // Helper function inserted by Swift 4.2 migrator.
+    fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+        return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+    }
+
+    // Helper function inserted by Swift 4.2 migrator.
+    fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+        return input.rawValue
+    }
 }
 
 //MARK: Firebase functions
@@ -121,12 +218,12 @@ extension StoreVC{
                 let alert = UIAlertController(title: "Success", message: "Category added successfully", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
-                self.getData()
+                self.getCategories()
             }
         }
     }
     
-    func getData(){
+    func getCategories(){
         startLoading()
         categories.removeAll()
         db.collection("categories").getDocuments
@@ -140,7 +237,12 @@ extension StoreVC{
                         let category = Category(snapshot: document)
                         self.categories.append(category)
                     }
-                    self.categoryTableView.reloadData()
+                    if self.selectedSegment == .Category{
+                        self.categoryTableView.reloadData()
+                    }else if self.selectedSegment == .Menu{
+                        self.itemTableView.reloadData()
+                    }
+ 
                 }
             }
         }
@@ -191,22 +293,52 @@ extension StoreVC{
 
 extension StoreVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        if tableView.tag == 1 || tableView.tag == 2{
+            return categories.count
+        }else{
+            return 0
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView.tag == 1{
+            return 50
+        }else if tableView.tag == 2{
+            return 30
+        }
+        else{
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell:UITableViewCell = (self.categoryTableView.dequeueReusableCell(withIdentifier: "categoryCell") as UITableViewCell?)!
-        cell.selectionStyle = .none
-        cell.backgroundColor = .lightGray
-        // set the text from the data model
-        cell.textLabel?.text = self.categories[indexPath.row].name
-        
-        return cell
+        if tableView.tag == 1{
+            let cell:UITableViewCell = (self.categoryTableView.dequeueReusableCell(withIdentifier: "categoryCell") as UITableViewCell?)!
+            cell.selectionStyle = .none
+            cell.backgroundColor = .lightGray
+            // set the text from the data model
+            cell.textLabel?.text = self.categories[indexPath.row].name
+            
+            return cell
+        }else{
+            let cell:UITableViewCell = (self.itemTableView.dequeueReusableCell(withIdentifier: "categoryDropdownCell") as UITableViewCell?)!
+            cell.selectionStyle = .none
+            // set the text from the data model
+            cell.textLabel?.text = self.categories[indexPath.row].name
+            
+            return cell
+        }
+      
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        if tableView.tag == 1{
+            return true
+        }else{
+            return false
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -215,13 +347,20 @@ extension StoreVC:UITableViewDelegate,UITableViewDataSource{
             
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                 self.deleteCategory(id: self.categories[indexPath.row].id)
-                self.getData()
+                self.getCategories()
             }))
             
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             
             present(alert, animated: true, completion: nil)
             
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.tag == 2{
+            selectedCategory = categories[indexPath.row]
+            txtSelectedCategory.text = categories[indexPath.row].name
         }
     }
     
