@@ -25,7 +25,7 @@ class StoreVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDe
     @IBOutlet weak var categoryTableView: UITableView!
     var categories:[Category] = []
     
-    //MARK: Item
+    //MARK: Menu+
     @IBOutlet weak var imgItem: UIImageView!
     @IBOutlet weak var itemTableView: UITableView!
     @IBOutlet weak var btnAddItem: UIButton!
@@ -39,6 +39,7 @@ class StoreVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDe
     @IBOutlet weak var txtDiscount: UITextField!
     var selectedCategory:Category?
     var pickedImage:Data?
+    var isSellAsItem = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,7 @@ class StoreVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDe
     
     func setupUI(){
         txtCategory.layer.cornerRadius = 4.0
+        btnAddItem.layer.cornerRadius = 8.0
     }
     
     @IBAction func didSelectSegment(_ sender: UISegmentedControl) {
@@ -93,7 +95,7 @@ class StoreVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDe
         addCategory()
     }
     
-    //MARK: Item Actions
+    //MARK: Menu+ Actions
     
     @IBAction func didTappedOnAddItem(_ sender: Any) {
         
@@ -101,6 +103,7 @@ class StoreVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDe
     
     @IBAction func didTappedOnSell(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+        isSellAsItem = sender.isSelected
     }
     
     @IBAction func didTappedOnDropDownCategory(_ sender: UIButton) {
@@ -127,6 +130,26 @@ class StoreVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDe
         }))
         self.present(alert, animated: true, completion: {() -> Void in })
     }
+    
+    @IBAction func didTappedOnAdd(_ sender: Any) {
+        do {
+            if try validateForm() {
+                startLoading()
+                addItemRequest()
+            }
+        } catch ValidateError.invalidData(let message) {
+            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            
+            self.present(alert, animated: true)
+        } catch {
+            let alert = UIAlertController(title: "Error", message: "Missing Data", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            
+            self.present(alert, animated: true)
+        }
+    }
+    
     
 }
 
@@ -157,28 +180,6 @@ extension StoreVC{
         // Display the picked image
         self.imgItem.image = image
         self.pickedImage = imageData
-        // Upload the new profile image to Firebase Storage
-        //        let storageRef = Storage.storage().reference().child("shared/\(user.uid)/profile-400x400.png")
-        //        let metadata = StorageMetadata(dictionary: ["contentType": "image/png"])
-        //        let uploadTask = storageRef.putData(imageData, metadata: metadata) { (metadata, error) in
-        //            guard metadata != nil else {
-        //                print("Error uploading image to Firebase Storage: \(error?.localizedDescription)")
-        //                return
-        //            }
-        //            // Metadata dictionary: bucket, contentType, downloadTokens, downloadURL, [file]name, updated, et al
-        //
-        //            // Log the event with Firebase Analytics
-        //            Analytics.logEvent("User_NewProfileImage", parameters: nil)
-        //
-        //            // Create a thumbnail image for future use, too
-        //            // TODO: Move this to a server-side background worker task
-        //            guard let image = pickedImage.scaleAndCrop(withAspect: true, to: 40),
-        //                  let imageData = image.pngData() else {
-        //                return
-        //            }
-        //            let storageRef = Storage.storage().reference().child("shared/\(user.uid)/profile-80x80.png")
-        //            storageRef.putData(imageData, metadata: StorageMetadata(dictionary: ["contentType": "image/png"]))
-        //        }
         
         picker.dismiss(animated: true, completion: nil)
     }
@@ -250,6 +251,7 @@ extension StoreVC{
     
     func deleteCategory(id:String){
         db.collection("categories").document(id).delete() { err in
+            self.stopLoading()
             if let err = err {
                 let alert = UIAlertController(title: "Error", message: err.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -262,6 +264,112 @@ extension StoreVC{
         }
     }
     
+    func addItemRequest(){
+        var ref: DocumentReference? = nil
+        ref = db.collection("foods").addDocument(data: [
+            "name": txtItem.text!,
+            "description": txtDescription.text!,
+            "price": txtPrice.text!,
+            "category": selectedCategory.toDictionnary!,
+            "discount": txtItem.text ?? "",
+            "isSell": isSellAsItem,
+            "store_id" : LocalUser.current()!.id
+        ]) { err in
+            if let err = err {
+                self.stopLoading()
+                let alert = UIAlertController(title: "Error", message: err.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            } else {
+                
+                // Upload the new profile image to Firebase Storage
+                let storageRef = Storage.storage().reference().child("shared/\(ref!.documentID)/food-400x400.png")
+                let metadata = StorageMetadata(dictionary: ["contentType": "image/png"])
+                let uploadTask = storageRef.putData(self.pickedImage!, metadata: metadata) { (metadata, error) in
+                    guard metadata != nil else {
+                        self.stopLoading()
+                        let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        self.present(alert, animated: true)
+                        
+                        print("Error uploading image to Firebase Storage: \(error?.localizedDescription)")
+                        return
+                    }
+                    // Metadata dictionary: bucket, contentType, downloadTokens, downloadURL, [file]name, updated, et al
+                    
+                    // Log the event with Firebase Analytics
+                    Analytics.logEvent("Food_Image", parameters: nil)
+                    
+                    self.startLoading()
+                    storageRef.downloadURL { url, error in
+                        self.stopLoading()
+                        if let error = error {
+                            self.stopLoading()
+                            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                            self.present(alert, animated: true)
+                        } else {
+                            self.startLoading()
+                            let updateref = self.db.collection("foods").document(ref!.documentID)
+                            updateref.updateData([
+                                "imageUrl": url!.absoluteString
+                            ]) { err in
+                                self.stopLoading()
+                                if let err = err {
+                                    let alert = UIAlertController(title: "Error", message: err.localizedDescription, preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                                    self.present(alert, animated: true)
+                                } else {
+                                    self.clearItemData()
+                                    let alert = UIAlertController(title: "Success", message: "Food added successfully", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                                    self.present(alert, animated: true)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//MARK: Menu+
+
+extension StoreVC{
+    func validateForm() throws -> Bool {
+        
+        guard (pickedImage != nil) else {
+            throw ValidateError.invalidData("Please pick an image")
+        }
+        
+        guard (txtItem.text != nil), let value = txtItem.text,!(value.trimLeadingTralingNewlineWhiteSpaces().isEmpty) else {
+            throw ValidateError.invalidData("Please enter item name")
+        }
+        
+        guard (txtDescription.text != nil), let des = txtDescription.text,!(des.trimLeadingTralingNewlineWhiteSpaces().isEmpty) else {
+            throw ValidateError.invalidData("Please enter description")
+        }
+        
+        guard (txtPrice.text != nil), let price = txtPrice.text,!(price.trimLeadingTralingNewlineWhiteSpaces().isEmpty),Int(price) != nil else {
+            throw ValidateError.invalidData("Please enter valid price")
+        }
+        
+        guard (txtSelectedCategory.text != nil), let cate = txtSelectedCategory.text,!(cate.trimLeadingTralingNewlineWhiteSpaces().isEmpty) else {
+            throw ValidateError.invalidData("Please select category")
+        }
+        
+        return true
+    }
+    
+    func clearItemData(){
+        for field in [txtItem,txtDescription,txtPrice,txtSelectedCategory,txtDiscount] {
+            field?.text = ""
+        }
+        
+        pickedImage = nil
+        imgItem.image = UIImage()
+    }
 }
 
 //MARK: Methods to manage keybaord

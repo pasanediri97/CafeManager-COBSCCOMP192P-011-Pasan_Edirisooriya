@@ -32,6 +32,7 @@
 		8A1D653C2622C666004FD069 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D65332622C666004FD069 /* LogInVC.swift */; };
 		8A1D653D2622C666004FD069 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D65362622C666004FD069 /* BaseVC.swift */; };
 		8A1D653E2622C666004FD069 /* BaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1D65372622C666004FD069 /* BaseVM.swift */; };
+		8A20B473263095810053C3C9 /* FoodTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20B472263095810053C3C9 /* FoodTVC.swift */; };
 		8A292B712625451300116262 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A292B702625451300116262 /* GoogleService-Info.plist */; };
 		8A292B7D2625563200116262 /* OrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A292B7C2625563200116262 /* OrderDetailsVC.swift */; };
 		8A292B87262573F800116262 /* AccountMainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A292B86262573F800116262 /* AccountMainTVC.swift */; };
@@ -93,6 +94,7 @@
 		8A1D65332622C666004FD069 /* LogInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		8A1D65362622C666004FD069 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		8A1D65372622C666004FD069 /* BaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVM.swift; sourceTree = "<group>"; };
+		8A20B472263095810053C3C9 /* FoodTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTVC.swift; sourceTree = "<group>"; };
 		8A292B702625451300116262 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8A292B7C2625563200116262 /* OrderDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsVC.swift; sourceTree = "<group>"; };
 		8A292B86262573F800116262 /* AccountMainTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMainTVC.swift; sourceTree = "<group>"; };
@@ -321,6 +323,14 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		8A20B46E263095500053C3C9 /* FoodTVC */ = {
+			isa = PBXGroup;
+			children = (
+				8A20B472263095810053C3C9 /* FoodTVC.swift */,
+			);
+			path = FoodTVC;
+			sourceTree = "<group>";
+		};
 		8A292B7B2625561A00116262 /* Order Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +369,7 @@
 		8A7CDD5926287B6B006D51DD /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				8A20B46E263095500053C3C9 /* FoodTVC */,
 				8A7CDD5A26287C67006D51DD /* StoreVC.swift */,
 				8A7CDD6226287C74006D51DD /* StoreVM.swift */,
 			);
@@ -629,6 +640,7 @@
 				8A7CDD5B26287C67006D51DD /* StoreVC.swift in Sources */,
 				8A1D65392622C666004FD069 /* ForgotPasswordVM.swift in Sources */,
 				8A1D64A32622C372004FD069 /* SceneDelegate.swift in Sources */,
+				8A20B473263095810053C3C9 /* FoodTVC.swift in Sources */,
 				8A1D65132622C612004FD069 /* LocalUser.swift in Sources */,
 				8A1D65112622C612004FD069 /* Validator.swift in Sources */,
 				8A1D653E2622C666004FD069 /* BaseVM.swift in Sources */,

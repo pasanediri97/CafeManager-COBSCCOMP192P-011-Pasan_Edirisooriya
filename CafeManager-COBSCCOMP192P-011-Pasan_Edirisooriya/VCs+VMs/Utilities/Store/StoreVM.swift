@@ -14,7 +14,7 @@ enum SelectedSegment:Int{
     case Menu = 2
 }
 
-struct Category {
+struct Category:Encodable {
     var id:String
     var name:String?
     
