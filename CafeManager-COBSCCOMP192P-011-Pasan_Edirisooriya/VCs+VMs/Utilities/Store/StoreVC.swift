@@ -18,6 +18,8 @@ class StoreVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDe
     @IBOutlet weak var foodPreviewTableView: UITableView!
     @IBOutlet weak var categoryView: UIView!
     @IBOutlet weak var itemView: UIView!
+    var foods:[Food] = []
+    var sectionedFoods: [SectionTable] = []
     
     //MARK: Category
     @IBOutlet weak var txtCategory: UITextField!
@@ -37,6 +39,7 @@ class StoreVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDe
     @IBOutlet weak var txtPrice: UITextField!
     @IBOutlet weak var txtSelectedCategory: UITextField!
     @IBOutlet weak var txtDiscount: UITextField!
+    
     var selectedCategory:Category?
     var pickedImage:Data?
     var isSellAsItem = false
@@ -74,6 +77,7 @@ class StoreVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDe
         case .Preview:
             foodPreviewView.isHidden = false
             hideViews(views: [categoryView,itemView])
+            getFoods()
         case .Category:
             getCategories()
             categoryView.isHidden = false
@@ -249,6 +253,43 @@ extension StoreVC{
         }
     }
     
+    func getFoods(){
+        startLoading()
+        sectionedFoods.removeAll()
+        foods.removeAll()
+        categories.removeAll()
+        db.collection("categories").getDocuments
+        { documents, err in
+            self.stopLoading()
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                if let document = documents {
+                    for document in documents!.documents {
+                        let category = Category(snapshot: document)
+                        self.categories.append(category)
+                    }
+                    self.db.collection("foods").whereField("storeId", isEqualTo: LocalUser.current()!.id).getDocuments
+                    { documents, err in
+                        self.stopLoading()
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            if let document = documents {
+                                for document in documents!.documents {
+                                    let resData = document.data() as NSDictionary
+                                    let food = Food(snapshot: document, category: resData.value(forKey:"category") as! NSDictionary)
+                                    self.foods.append(food)
+                                }
+                                self.manageSectionDataList()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+}
+
     func deleteCategory(id:String){
         db.collection("categories").document(id).delete() { err in
             self.stopLoading()
@@ -271,9 +312,9 @@ extension StoreVC{
             "description": txtDescription.text!,
             "price": txtPrice.text!,
             "category": selectedCategory.toDictionnary!,
-            "discount": txtItem.text ?? "",
+            "discount": txtDiscount.text ?? "0",
             "isSell": isSellAsItem,
-            "store_id" : LocalUser.current()!.id
+            "storeId" : LocalUser.current()!.id
         ]) { err in
             if let err = err {
                 self.stopLoading()
@@ -355,6 +396,12 @@ extension StoreVC{
             throw ValidateError.invalidData("Please enter valid price")
         }
         
+        if txtDiscount.text != ""{
+            guard let dis = txtDiscount.text,Int(dis) != nil else {
+                throw ValidateError.invalidData("Please enter valid discount")
+            }
+        }
+        
         guard (txtSelectedCategory.text != nil), let cate = txtSelectedCategory.text,!(cate.trimLeadingTralingNewlineWhiteSpaces().isEmpty) else {
             throw ValidateError.invalidData("Please select category")
         }
@@ -368,7 +415,24 @@ extension StoreVC{
         }
         
         pickedImage = nil
-        imgItem.image = UIImage()
+        imgItem.image = #imageLiteral(resourceName: "img-placeholder")
+    }
+    
+    func groupFoodsData(completion: () -> ()){
+        for item in categories {
+            let items = self.foods.filter({$0.categoryId ?? "" == item.id})
+            if items.count > 0{
+                let foodSection = SectionTable(sectionName:item.name, foods: items)
+                self.sectionedFoods.append(foodSection)
+            }
+        }
+        completion()
+    }
+    
+    func manageSectionDataList() {
+        groupFoodsData(completion: {
+            self.foodPreviewTableView.reloadData()
+        })
     }
 }
 
@@ -400,11 +464,36 @@ extension StoreVC{
 //MARK: TableView Delegate functions
 
 extension StoreVC:UITableViewDelegate,UITableViewDataSource{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if tableView.tag == 0{
+            return sectionedFoods.count
+        }else{
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if tableView.tag == 0{
+        return 40
+        }else{
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if tableView.tag == 0{
+        return sectionedFoods[section].sectionName ?? "Other"
+        }else{
+            return ""
+        }
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView.tag == 1 || tableView.tag == 2{
             return categories.count
         }else{
-            return 0
+             return sectionedFoods[section].foods.count
         }
         
     }
@@ -416,24 +505,27 @@ extension StoreVC:UITableViewDelegate,UITableViewDataSource{
             return 30
         }
         else{
-            return 0
+            return 120
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if tableView.tag == 1{
+        if tableView.tag == 0{
+            let cell:FoodTVC = self.foodPreviewTableView.dequeueReusableCell(withIdentifier: "FoodTVC") as! FoodTVC
+            cell.selectionStyle = .none
+            cell.configureCell(item: sectionedFoods[indexPath.section].foods[indexPath.row])
+            
+            return cell
+        }else if tableView.tag == 1{
             let cell:UITableViewCell = (self.categoryTableView.dequeueReusableCell(withIdentifier: "categoryCell") as UITableViewCell?)!
             cell.selectionStyle = .none
             cell.backgroundColor = .lightGray
-            // set the text from the data model
             cell.textLabel?.text = self.categories[indexPath.row].name
             
             return cell
         }else{
             let cell:UITableViewCell = (self.itemTableView.dequeueReusableCell(withIdentifier: "categoryDropdownCell") as UITableViewCell?)!
             cell.selectionStyle = .none
-            // set the text from the data model
             cell.textLabel?.text = self.categories[indexPath.row].name
             
             return cell

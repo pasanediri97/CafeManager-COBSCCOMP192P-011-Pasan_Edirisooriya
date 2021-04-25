@@ -149,6 +149,10 @@
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="Jey-5s-IEu" id="en3-pp-bFV"/>
+                                                    <outlet property="delegate" destination="Jey-5s-IEu" id="8S6-X7-V11"/>
+                                                </connections>
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -261,7 +265,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="67C-po-guX">
                                                                 <rect key="frame" x="20" y="385.5" width="374" height="34"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oti-Ql-qvV">
+                                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oti-Ql-qvV">
                                                                         <rect key="frame" x="0.0" y="0.0" width="344" height="34"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
@@ -466,7 +470,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSv-ge-fgc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1730" y="-226"/>
+            <point key="canvasLocation" x="1417" y="-202"/>
         </scene>
         <!--Foods-->
         <scene sceneID="pIG-Yi-K3C">
@@ -488,7 +492,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcK-Le-ydO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="454" y="-202"/>
+            <point key="canvasLocation" x="372" y="-202"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="mXa-Ch-9MK">
@@ -516,7 +520,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CeU-II-3WA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1420" y="877"/>
+            <point key="canvasLocation" x="1419" y="897"/>
         </scene>
         <!--Orders-->
         <scene sceneID="bxW-JI-tF1">
@@ -538,7 +542,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bKM-Rf-3UQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="345" y="877"/>
+            <point key="canvasLocation" x="345" y="897"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Ale-4o-0CM">

@@ -4,6 +4,7 @@
 
 import Foundation
 import UIKit
+import AlamofireImage
 
 extension UIViewController {
     internal enum NavigationBarVisibility {
@@ -43,7 +44,6 @@ extension UIViewController {
 }
 
 public extension String {
-    
     func trimLeadingTralingNewlineWhiteSpaces() -> String {
         return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
@@ -67,6 +67,14 @@ extension UIImage
         UIGraphicsEndImageContext()
         
         return scaledImage
+    }
+}
+
+extension UIImageView {
+    func setImageWithUrl(_ urlString: String, placeholderImage: UIImage = UIImage()) {
+        if let url = URL(string: urlString) {
+            self.af_setImage(withURL: url, placeholderImage: placeholderImage)
+        }
     }
 }
 

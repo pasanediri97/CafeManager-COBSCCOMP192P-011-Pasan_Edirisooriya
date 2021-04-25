@@ -7,16 +7,6 @@
 
 import UIKit
 
-public struct Food{
-    var id:Int
-    var name:String
-    var image:UIImage
-    var description:String
-    var price:Int
-    var off:String? = nil
-    var categoryId:Int
-}
-
 class FoodTVC: UITableViewCell {
 
     @IBOutlet weak var foodImage: UIImageView!
@@ -45,14 +35,14 @@ class FoodTVC: UITableViewCell {
     }
     
     func configureCell(item:Food){
-        foodImage.image = item.image
+        foodImage.setImageWithUrl(item.imageUrl ?? "")
         lblName.text = item.name
         lblDescription.text = item.description
-        lblPrice.text = "Rs. \(item.price)"
-        if item.off == nil{
+        lblPrice.text = "Rs. \(item.price ?? "")"
+        if item.discount == "0" || item.discount == "" {
             lblOff.isHidden = true
         }else{
-            lblOff.text = item.off
+            lblOff.text = "\(item.discount ?? "")% off"
         }
     }
 

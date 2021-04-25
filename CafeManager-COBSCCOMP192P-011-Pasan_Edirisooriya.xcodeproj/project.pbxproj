@@ -214,10 +214,10 @@
 		8A1D64F22622C4BB004FD069 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				8A1D64A62622C372004FD069 /* Main.storyboard */,
-				8A1D64F52622C4F4004FD069 /* Auth.storyboard */,
-				8A1D64FA2622C500004FD069 /* TabBar.storyboard */,
 				8A1D64FF2622C50B004FD069 /* Utilities.storyboard */,
+				8A1D64F52622C4F4004FD069 /* Auth.storyboard */,
+				8A1D64A62622C372004FD069 /* Main.storyboard */,
+				8A1D64FA2622C500004FD069 /* TabBar.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";

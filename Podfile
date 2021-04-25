@@ -14,6 +14,8 @@ target 'CafeManager-COBSCCOMP192P-011-Pasan_Edirisooriya' do
   pod 'RealmSwift'
   pod "RappleProgressHUD"
   pod 'Firebase/Database'
+  pod 'AlamofireImage', '~> 4.1'
+  
   target 'CafeManager-COBSCCOMP192P-011-Pasan_EdirisooriyaTests' do
     inherit! :search_paths
     # Pods for testing
