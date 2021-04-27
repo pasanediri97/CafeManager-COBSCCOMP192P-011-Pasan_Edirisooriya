@@ -17,6 +17,8 @@ class FoodTVC: UITableViewCell {
     @IBOutlet weak var lblOff: UILabel!
     @IBOutlet weak var swichAvailable: UISwitch!
     
+    var onSwitchToggle: ((Bool) -> ())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         foodImage.layer.cornerRadius = 4.0
@@ -34,6 +36,10 @@ class FoodTVC: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func didTappedOnSwitch(_ sender: UISwitch) {
+        self.onSwitchToggle?(sender.isOn)
+    }
+    
     func configureCell(item:Food){
         foodImage.setImageWithUrl(item.imageUrl ?? "")
         lblName.text = item.name
@@ -44,6 +50,7 @@ class FoodTVC: UITableViewCell {
         }else{
             lblOff.text = "\(item.discount ?? "")% off"
         }
+        swichAvailable.isOn = item.isSell!
     }
 
 }

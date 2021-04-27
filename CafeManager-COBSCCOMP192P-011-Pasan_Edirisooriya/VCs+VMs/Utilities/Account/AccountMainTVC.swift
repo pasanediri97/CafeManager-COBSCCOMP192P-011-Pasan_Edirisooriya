@@ -36,12 +36,22 @@ class AccountMainTVC: UITableViewCell {
     }
     
     func configureCell(with:OrderModal){
-        lblDateTime.text = with.time.description
+        lblDateTime.text = convertDateFormater(with.time.description)
         lblTotalPrice.text = "Rs. \(with.price)"
         arrItems = with.items
         tableView.reloadData()
     }
-
+    
+    func convertDateFormater(_ date: String) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
+        let date = dateFormatter.date(from: date)
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return  dateFormatter.string(from: date!)
+        
+    }
+    
 }
 
 extension AccountMainTVC:UITableViewDelegate,UITableViewDataSource{
@@ -50,13 +60,10 @@ extension AccountMainTVC:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell:AccountTVC = self.tableView.dequeueReusableCell(withIdentifier: "AccountTVC") as! AccountTVC
         cell.selectionStyle = .none
         cell.configCell(with: arrItems[indexPath.row])
         return cell
-        
-        
     }
     
 }

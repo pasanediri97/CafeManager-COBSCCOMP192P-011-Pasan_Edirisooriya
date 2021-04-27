@@ -269,7 +269,7 @@ extension StoreVC{
                         let category = Category(snapshot: document)
                         self.categories.append(category)
                     }
-                    self.db.collection("foods").whereField("storeId", isEqualTo: LocalUser.current()!.id).getDocuments
+                    self.db.collection("foods").getDocuments
                     { documents, err in
                         self.stopLoading()
                         if let err = err {
@@ -372,6 +372,22 @@ extension StoreVC{
                 }
             }
         }
+    }
+    
+    func toggleAvalibility(docId:String,state:Bool){
+        self.startLoading()
+        let updateref = self.db.collection("foods").document(docId)
+        updateref.updateData([
+            "isSell": state
+        ]) { err in
+            self.stopLoading()
+            if let err = err {
+                let alert = UIAlertController(title: "Error", message: err.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            }
+        }
+
     }
 }
 
@@ -513,6 +529,9 @@ extension StoreVC:UITableViewDelegate,UITableViewDataSource{
         if tableView.tag == 0{
             let cell:FoodTVC = self.foodPreviewTableView.dequeueReusableCell(withIdentifier: "FoodTVC") as! FoodTVC
             cell.selectionStyle = .none
+            cell.onSwitchToggle = { isOn in
+                self.toggleAvalibility(docId: self.sectionedFoods[indexPath.section].foods[indexPath.row].id!, state: isOn)
+            }
             cell.configureCell(item: sectionedFoods[indexPath.section].foods[indexPath.row])
             
             return cell
