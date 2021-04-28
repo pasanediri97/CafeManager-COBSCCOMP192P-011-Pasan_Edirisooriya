@@ -838,6 +838,9 @@
                                 </constraints>
                                 <color key="tintColor" systemColor="systemYellowColor"/>
                                 <state key="normal" image="timer" catalog="system"/>
+                                <connections>
+                                    <action selector="didTappedOnFilters:" destination="H5c-NN-Iwp" eventType="touchUpInside" id="b52-AZ-YZD"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dkQ-hw-SGz"/>
@@ -859,7 +862,14 @@
                             <constraint firstItem="s0H-vA-0sK" firstAttribute="leading" secondItem="dkQ-hw-SGz" secondAttribute="leading" id="weS-df-0rD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cZd-MV-k63"/>
+                    <navigationItem key="navigationItem" id="cZd-MV-k63">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" image="power" catalog="system" id="usB-hH-2dT">
+                            <color key="tintColor" red="1" green="0.24791790729999999" blue="0.3131448792" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="didTappedOnLogOut:" destination="H5c-NN-Iwp" id="mWg-JN-wdA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="lblEndDate" destination="I7k-dc-bwe" id="Mbm-uc-TLC"/>
                         <outlet property="lblStartDate" destination="bfk-vz-fbi" id="e1h-Rm-5sl"/>
@@ -905,6 +915,7 @@
         <image name="img-placeholder" width="1500" height="1500"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="power" catalog="system" width="128" height="124"/>
         <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
         <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
         <image name="timer" catalog="system" width="128" height="121"/>

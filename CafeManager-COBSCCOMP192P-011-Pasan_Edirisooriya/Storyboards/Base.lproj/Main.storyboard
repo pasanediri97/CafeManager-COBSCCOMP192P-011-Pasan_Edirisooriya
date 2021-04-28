@@ -176,6 +176,75 @@
             </objects>
             <point key="canvasLocation" x="-146.37681159420291" y="93.75"/>
         </scene>
+        <!--Filter PopupVC-->
+        <scene sceneID="9NT-Ob-OHc">
+            <objects>
+                <viewController storyboardIdentifier="FilterPopupVC" id="0YV-7n-tyZ" customClass="FilterPopupVC" customModule="CafeManager_COBSCCOMP192P_011_Pasan_Edirisooriya" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LCh-y9-8k3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYb-mv-Gfu">
+                                <rect key="frame" x="30" y="332" width="354" height="232"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="46" translatesAutoresizingMaskIntoConstraints="NO" id="ZJO-Aj-GL5">
+                                        <rect key="frame" x="30" y="40" width="294" height="114"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iFR-m8-ggP">
+                                                <rect key="frame" x="0.0" y="0.0" width="294" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="End Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J2h-yb-F2k">
+                                                <rect key="frame" x="0.0" y="80" width="294" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEa-WL-x0P">
+                                        <rect key="frame" x="150.5" y="192" width="53" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="RsG-UF-Mtc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                        <state key="normal" title="Apply">
+                                            <color key="titleColor" systemColor="systemYellowColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTappedOnApply:" destination="0YV-7n-tyZ" eventType="touchUpInside" id="Dqf-FA-FsF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="ZJO-Aj-GL5" firstAttribute="leading" secondItem="uYb-mv-Gfu" secondAttribute="leading" constant="30" id="1nJ-rg-BAz"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZJO-Aj-GL5" secondAttribute="trailing" constant="30" id="3lL-OF-Aab"/>
+                                    <constraint firstItem="ZJO-Aj-GL5" firstAttribute="top" secondItem="uYb-mv-Gfu" secondAttribute="top" constant="40" id="L0u-jP-ZuD"/>
+                                    <constraint firstAttribute="height" constant="232" id="O3A-hq-FhT"/>
+                                    <constraint firstItem="DEa-WL-x0P" firstAttribute="centerX" secondItem="uYb-mv-Gfu" secondAttribute="centerX" id="gSO-fS-hAt"/>
+                                    <constraint firstAttribute="bottom" secondItem="DEa-WL-x0P" secondAttribute="bottom" constant="20" id="wES-sv-Vng"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Y15-r8-HL8"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uYb-mv-Gfu" firstAttribute="centerY" secondItem="LCh-y9-8k3" secondAttribute="centerY" id="96G-fV-bzy"/>
+                            <constraint firstItem="Y15-r8-HL8" firstAttribute="trailing" secondItem="uYb-mv-Gfu" secondAttribute="trailing" constant="30" id="eMm-qI-aEB"/>
+                            <constraint firstItem="uYb-mv-Gfu" firstAttribute="centerX" secondItem="LCh-y9-8k3" secondAttribute="centerX" id="g6X-Bu-j2Q"/>
+                            <constraint firstItem="uYb-mv-Gfu" firstAttribute="leading" secondItem="Y15-r8-HL8" secondAttribute="leading" constant="30" id="osA-T1-HfS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="txtEndDate" destination="J2h-yb-F2k" id="Okb-D0-3o0"/>
+                        <outlet property="txtStartDate" destination="iFR-m8-ggP" id="f4p-Qv-UPN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S9P-Ej-8yF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="832" y="64"/>
+        </scene>
     </scenes>
     <resources>
         <image name="phone.fill" catalog="system" width="128" height="114"/>

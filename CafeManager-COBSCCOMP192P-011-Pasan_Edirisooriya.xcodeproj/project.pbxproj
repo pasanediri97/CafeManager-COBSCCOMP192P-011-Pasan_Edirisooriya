@@ -36,8 +36,6 @@
 		8A20ADCB2637CDBF00EAB132 /* OrderVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20ADCA2637CDBF00EAB132 /* OrderVM.swift */; };
 		8A20ADFE2637E29A00EAB132 /* OrderDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20ADFD2637E29A00EAB132 /* OrderDetailTVC.swift */; };
 		8A20AE42263872F300EAB132 /* AccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20AE41263872F300EAB132 /* AccountVC.swift */; };
-		8A20AE5726387CF200EAB132 /* FilterPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A20AE5526387CF200EAB132 /* FilterPopupView.xib */; };
-		8A20AE5826387CF200EAB132 /* FilterPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20AE5626387CF200EAB132 /* FilterPopupView.swift */; };
 		8A20B473263095810053C3C9 /* FoodTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20B472263095810053C3C9 /* FoodTVC.swift */; };
 		8A292B712625451300116262 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A292B702625451300116262 /* GoogleService-Info.plist */; };
 		8A292B7D2625563200116262 /* OrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A292B7C2625563200116262 /* OrderDetailsVC.swift */; };
@@ -46,6 +44,7 @@
 		8A292B98262574C200116262 /* AccountTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A292B97262574C200116262 /* AccountTVC.swift */; };
 		8A7CDD5B26287C67006D51DD /* StoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7CDD5A26287C67006D51DD /* StoreVC.swift */; };
 		8A7CDD6326287C74006D51DD /* StoreVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7CDD6226287C74006D51DD /* StoreVM.swift */; };
+		8AD86A372639068D00E227AA /* FilterPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD86A362639068D00E227AA /* FilterPopupVC.swift */; };
 		FE6A7CE7AF5F0685C46C13F3 /* Pods_CafeManager_COBSCCOMP192P_011_Pasan_Edirisooriya_CafeManager_COBSCCOMP192P_011_Pasan_EdirisooriyaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740A670B75509A1A2F4C7F41 /* Pods_CafeManager_COBSCCOMP192P_011_Pasan_Edirisooriya_CafeManager_COBSCCOMP192P_011_Pasan_EdirisooriyaUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,8 +103,6 @@
 		8A20ADCA2637CDBF00EAB132 /* OrderVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderVM.swift; sourceTree = "<group>"; };
 		8A20ADFD2637E29A00EAB132 /* OrderDetailTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailTVC.swift; sourceTree = "<group>"; };
 		8A20AE41263872F300EAB132 /* AccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVC.swift; sourceTree = "<group>"; };
-		8A20AE5526387CF200EAB132 /* FilterPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterPopupView.xib; sourceTree = "<group>"; };
-		8A20AE5626387CF200EAB132 /* FilterPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPopupView.swift; sourceTree = "<group>"; };
 		8A20B472263095810053C3C9 /* FoodTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTVC.swift; sourceTree = "<group>"; };
 		8A292B702625451300116262 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8A292B7C2625563200116262 /* OrderDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsVC.swift; sourceTree = "<group>"; };
@@ -114,6 +111,7 @@
 		8A292B97262574C200116262 /* AccountTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTVC.swift; sourceTree = "<group>"; };
 		8A7CDD5A26287C67006D51DD /* StoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreVC.swift; sourceTree = "<group>"; };
 		8A7CDD6226287C74006D51DD /* StoreVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreVM.swift; sourceTree = "<group>"; };
+		8AD86A362639068D00E227AA /* FilterPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPopupVC.swift; sourceTree = "<group>"; };
 		8BC7DCED120B5710BE444636 /* Pods_CafeManager_COBSCCOMP192P_011_Pasan_EdirisooriyaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CafeManager_COBSCCOMP192P_011_Pasan_EdirisooriyaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		959CF42730268470EB18CCBF /* Pods-CafeManager-COBSCCOMP192P-011-Pasan_Edirisooriya.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeManager-COBSCCOMP192P-011-Pasan_Edirisooriya.debug.xcconfig"; path = "Target Support Files/Pods-CafeManager-COBSCCOMP192P-011-Pasan_Edirisooriya/Pods-CafeManager-COBSCCOMP192P-011-Pasan_Edirisooriya.debug.xcconfig"; sourceTree = "<group>"; };
 		9DD3DE6944EA995BB6F7C641 /* Pods-CafeManager-COBSCCOMP192P-011-Pasan_EdirisooriyaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeManager-COBSCCOMP192P-011-Pasan_EdirisooriyaTests.release.xcconfig"; path = "Target Support Files/Pods-CafeManager-COBSCCOMP192P-011-Pasan_EdirisooriyaTests/Pods-CafeManager-COBSCCOMP192P-011-Pasan_EdirisooriyaTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 		8A1D649F2622C372004FD069 /* CafeManager-COBSCCOMP192P-011-Pasan_Edirisooriya */ = {
 			isa = PBXGroup;
 			children = (
-				8A20AE5426387CF200EAB132 /* Custom UIs */,
 				8A1D64F12622C4B1004FD069 /* Application */,
 				8A1D64F22622C4BB004FD069 /* Storyboards */,
 				8A1D64F42622C4D8004FD069 /* Support FIles */,
@@ -322,6 +319,7 @@
 		8A1D65342622C666004FD069 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				8AD86A352639067300E227AA /* FilterPopup */,
 				8A292B7B2625561A00116262 /* Order Details */,
 			);
 			path = Main;
@@ -342,15 +340,6 @@
 				8A20ADC22637BF3800EAB132 /* OrderTVC.swift */,
 			);
 			path = OrderTVC;
-			sourceTree = "<group>";
-		};
-		8A20AE5426387CF200EAB132 /* Custom UIs */ = {
-			isa = PBXGroup;
-			children = (
-				8A20AE5526387CF200EAB132 /* FilterPopupView.xib */,
-				8A20AE5626387CF200EAB132 /* FilterPopupView.swift */,
-			);
-			path = "Custom UIs";
 			sourceTree = "<group>";
 		};
 		8A20B46E263095500053C3C9 /* FoodTVC */ = {
@@ -408,6 +397,14 @@
 				8A7CDD6226287C74006D51DD /* StoreVM.swift */,
 			);
 			path = Store;
+			sourceTree = "<group>";
+		};
+		8AD86A352639067300E227AA /* FilterPopup */ = {
+			isa = PBXGroup;
+			children = (
+				8AD86A362639068D00E227AA /* FilterPopupVC.swift */,
+			);
+			path = FilterPopup;
 			sourceTree = "<group>";
 		};
 		AD2EF18F4DE8F3E06D3DF23D /* Pods */ = {
@@ -532,7 +529,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A1D64FB2622C500004FD069 /* TabBar.storyboard in Resources */,
-				8A20AE5726387CF200EAB132 /* FilterPopupView.xib in Resources */,
 				8A1D64F62622C4F4004FD069 /* Auth.storyboard in Resources */,
 				8A1D64AD2622C372004FD069 /* LaunchScreen.storyboard in Resources */,
 				8A1D65002622C50B004FD069 /* Utilities.storyboard in Resources */,
@@ -666,6 +662,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AD86A372639068D00E227AA /* FilterPopupVC.swift in Sources */,
 				8A1D65142622C612004FD069 /* UserModal.swift in Sources */,
 				8A292B87262573F800116262 /* AccountMainTVC.swift in Sources */,
 				8A1D64A12622C372004FD069 /* AppDelegate.swift in Sources */,
@@ -678,7 +675,6 @@
 				8A20ADC32637BF3800EAB132 /* OrderTVC.swift in Sources */,
 				8A1D64A32622C372004FD069 /* SceneDelegate.swift in Sources */,
 				8A20B473263095810053C3C9 /* FoodTVC.swift in Sources */,
-				8A20AE5826387CF200EAB132 /* FilterPopupView.swift in Sources */,
 				8A1D65132622C612004FD069 /* LocalUser.swift in Sources */,
 				8A1D65112622C612004FD069 /* Validator.swift in Sources */,
 				8A1D653E2622C666004FD069 /* BaseVM.swift in Sources */,

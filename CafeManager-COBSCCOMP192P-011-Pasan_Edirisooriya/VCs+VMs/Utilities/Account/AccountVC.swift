@@ -22,6 +22,7 @@ class AccountVC: BaseVC {
     var endDate:Date = Date()
     
     var arrOrders:[OrderModal] = []
+    var arrOrdersFiltered:[OrderModal] = []
     
     
     @IBOutlet weak var tableView: UITableView!{
@@ -48,6 +49,7 @@ class AccountVC: BaseVC {
         db.collection("orders").addSnapshotListener {
             documents, err in
             self.arrOrders.removeAll()
+            self.arrOrdersFiltered.removeAll()
             self.stopLoading()
             if let err = err {
                 print("Error updating document: \(err)")
@@ -67,6 +69,7 @@ class AccountVC: BaseVC {
                         
                         //Task(id: nil, name: task.value(forKey:"title") as? String, body: task.value(forKey:"body") as? String)
                         self.arrOrders.append(newOrder)
+                        self.arrOrdersFiltered.append(newOrder)
                     }
                     
                 }
@@ -84,13 +87,46 @@ class AccountVC: BaseVC {
                 
         
                 self.lblTotal.text = "Rs. \(self.totalPrice)"
-                //                        print("Document data: \(dataDescription)")
-                //
                 self.tableView.reloadData()
             }
         }
     }
 
+    @IBAction func didTappedOnFilters(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let alert = storyboard.instantiateViewController(withIdentifier: "FilterPopupVC") as! FilterPopupVC
+        alert.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
+        alert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+  
+        present(alert, animated: true, completion: nil)
+        
+//        alert.onCloseButtonClick = {
+//            self.dismiss(animated: true, completion: nil)
+//        }
+        
+        alert.onApplyButtonClick = { dates in
+            self.arrOrders = self.arrOrdersFiltered.filter({$0.time >= dates[0] && $0.time <= dates[1]})
+            self.lblStartDate.text = self.convertDateFormater(dates[0].description)
+            self.lblEndDate.text = self.convertDateFormater(dates[1].description)
+            self.totalPrice = 0
+            for item in self.arrOrders {
+                self.totalPrice += item.price
+            }
+            self.lblTotal.text = "Rs. \(self.totalPrice)"
+            self.tableView.reloadData()
+        }
+  
+    }
+    
+    func convertDateFormater(_ date: String) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
+        let date = dateFormatter.date(from: date)
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return  dateFormatter.string(from: date!)
+        
+    }
     /*
     // MARK: - Navigation
 
@@ -101,6 +137,35 @@ class AccountVC: BaseVC {
     }
     */
 
+    @IBAction func didTappedOnLogOut(_ sender: Any) {
+        let alert = UIAlertController(title: "Confirm", message: "Are you sure want to Log Out?", preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+        let firebaseAuth = Auth.auth()
+         do {
+           try firebaseAuth.signOut()
+         } catch let signOutError as NSError {
+           print ("Error signing out: %@", signOutError)
+         }
+            self.deleteLocalUserAndSetRoot()
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    // Delete local user and set root
+    func deleteLocalUserAndSetRoot() {
+        // Delete Realm current user
+        
+        guard let user = LocalUser.current() else { return }
+        RealmService.shared.delete(user)
+        let nc = UIStoryboard.init(name: "Auth", bundle: Bundle.main).instantiateViewController(withIdentifier: "LogInNC")
+        self.resetWindow(with: nc)
+    }
 }
 
 extension AccountVC:UITableViewDelegate,UITableViewDataSource{
