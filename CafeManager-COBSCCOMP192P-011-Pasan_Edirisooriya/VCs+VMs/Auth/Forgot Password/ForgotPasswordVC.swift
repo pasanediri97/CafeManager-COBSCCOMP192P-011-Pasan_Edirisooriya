@@ -12,11 +12,18 @@ class ForgotPasswordVC: BaseVC {
 
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var btnSubmit: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         addListers()
+        setupUI()
         // Do any additional setup after loading the view.
+    }
+    
+    func setupUI(){
+        btnSubmit.layer.cornerRadius = 5.0
     }
  
     @IBAction func didTappedOnSubmit(_ sender: Any) {

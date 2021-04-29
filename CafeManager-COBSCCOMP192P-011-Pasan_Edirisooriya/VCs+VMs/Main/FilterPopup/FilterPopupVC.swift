@@ -11,6 +11,7 @@ class FilterPopupVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var txtStartDate: UITextField!
     @IBOutlet weak var txtEndDate: UITextField!
+    @IBOutlet weak var mainView: UIView!
     
     var startDate = Date()
     var endDate = Date()
@@ -26,6 +27,7 @@ class FilterPopupVC: UIViewController, UITextFieldDelegate {
     }
     
     func setupUI(){
+        mainView.layer.cornerRadius = 7.0
         view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
     }
     

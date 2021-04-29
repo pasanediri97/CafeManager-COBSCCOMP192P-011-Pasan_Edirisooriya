@@ -11,8 +11,7 @@ target 'CafeManager-COBSCCOMP192P-011-Pasan_Edirisooriya' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
-  pod 'RealmSwift'
-  pod "RappleProgressHUD"
+  pod 'RealmSwift' 
   pod 'Firebase/Database'
   pod 'AlamofireImage', '~> 4.1'
   

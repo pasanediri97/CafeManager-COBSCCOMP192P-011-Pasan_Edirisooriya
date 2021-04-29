@@ -21,13 +21,21 @@ class FoodTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        foodImage.layer.cornerRadius = 4.0
+        
         mainView.layer.shadowColor = UIColor.black.cgColor
         mainView.layer.shadowOpacity = 0.5
         mainView.layer.shadowOffset = .zero
         mainView.layer.shadowRadius = 5
-        mainView.layer.cornerRadius = 5.0
+  
         // Initialization code
+    }
+    
+    override func layoutIfNeeded() {
+        super.layoutIfNeeded()
+        foodImage.layer.cornerRadius = 4.0
+        mainView.layer.cornerRadius = 5.0
+        lblOff.layer.cornerRadius = 4.0
+        lblOff.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

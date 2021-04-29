@@ -583,4 +583,8 @@ extension StoreVC:UITableViewDelegate,UITableViewDataSource{
         }
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor.yellow
+    }
+    
 }

@@ -13,12 +13,18 @@ class LogInVC: BaseVC {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var btnLogin: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         addListers()
+        setupUI()
         // Do any additional setup after loading the view.
+    }
+    
+    func setupUI(){
+        btnLogin.layer.cornerRadius = 5.0
     }
     
     override func viewWillAppear(_ animated: Bool) {

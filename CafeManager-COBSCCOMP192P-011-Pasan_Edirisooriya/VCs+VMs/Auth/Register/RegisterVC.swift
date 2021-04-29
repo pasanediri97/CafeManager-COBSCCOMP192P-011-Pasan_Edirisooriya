@@ -15,12 +15,18 @@ class RegisterVC: BaseVC {
     @IBOutlet weak var txtPhoneNo: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var btnRegister: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         addListers()
+        setupUI()
         // Do any additional setup after loading the view.
+    }
+    
+    func setupUI(){
+        btnRegister.layer.cornerRadius = 5.0
     }
     
     @IBAction func didTappedOnRegister(_ sender: Any) {
@@ -53,7 +59,6 @@ class RegisterVC: BaseVC {
     
     func registerUser(){ 
         Auth.auth().createUser(withEmail: txtEmail.text!, password: txtPassword.text!) { authResult, error in
-            self.stopLoading()
             if let user = authResult?.user {
                 LocalUser.saveLoginData(user: UserModal(id: user.uid, avatarUrl: user.photoURL?.absoluteString ?? "", phoneNo: self.txtPhoneNo.text!, email: user.email ?? ""))
                 let userAttrs = ["phone_number": self.txtPhoneNo.text!]
@@ -66,11 +71,12 @@ class RegisterVC: BaseVC {
                         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                         self.present(alert, animated: true)
                     }else{
-                        let nc = UIStoryboard.init(name: "TabBar", bundle: Bundle.main).instantiateViewController(withIdentifier: "TabBarVC")
+                        let nc = UIStoryboard.init(name: "Auth", bundle: Bundle.main).instantiateViewController(withIdentifier: "LocationPermissionNC")
                         self.resetWindow(with: nc)
                     }
                 }
             }else if let error = error {
+                self.stopLoading()
                 let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
