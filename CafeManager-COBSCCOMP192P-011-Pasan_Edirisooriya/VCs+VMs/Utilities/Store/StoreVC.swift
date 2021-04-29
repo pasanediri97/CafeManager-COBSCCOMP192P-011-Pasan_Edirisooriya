@@ -49,12 +49,16 @@ class StoreVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDe
         handleSegments()
         hideKeyboardWhenTappedAround()
         addListers()
-        setupUI()
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupUI()
+    }
+    
     func setupUI(){
-        txtCategory.layer.cornerRadius = 4.0
+        btnAddCategory.layer.cornerRadius = 4.0
         btnAddItem.layer.cornerRadius = 8.0
     }
     
@@ -538,7 +542,7 @@ extension StoreVC:UITableViewDelegate,UITableViewDataSource{
         }else if tableView.tag == 1{
             let cell:UITableViewCell = (self.categoryTableView.dequeueReusableCell(withIdentifier: "categoryCell") as UITableViewCell?)!
             cell.selectionStyle = .none
-            cell.backgroundColor = .lightGray
+            cell.backgroundColor = UIColor(named: "#FCEEA7")!
             cell.textLabel?.text = self.categories[indexPath.row].name
             
             return cell
@@ -584,7 +588,7 @@ extension StoreVC:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UIColor.yellow
+        view.tintColor = UIColor(named: "#9B870C")!
     }
     
 }

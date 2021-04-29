@@ -14,6 +14,7 @@ class RegisterVC: BaseVC {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPhoneNo: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var txtConfirmPassword: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var btnRegister: UIButton!
     
@@ -100,23 +101,31 @@ class RegisterVC: BaseVC {
     
     func validateForm() throws -> Bool {
         guard (txtEmail.text != nil), let value = txtEmail.text else {
-            throw ValidateError.invalidData("Invalid Email")
+            throw ValidateError.invalidData("Email you entered is invalid")
         }
         guard !(value.trimLeadingTralingNewlineWhiteSpaces().isEmpty) else {
-            throw ValidateError.invalidData("Email Empty")
+            throw ValidateError.invalidData("Please enter an Email")
         }
         guard isValidEmailAddress(email: value) else {
-            throw ValidateError.invalidData("Invalid Email")
+            throw ValidateError.invalidData("Email you entered is invalid")
         }
         guard (txtPhoneNo.text != nil), let phone = txtPhoneNo.text else {
-            throw ValidateError.invalidData("Invalid Phone Number")
+            throw ValidateError.invalidData("Phone Number you entered is invalid")
         }
         guard !(phone.trimLeadingTralingNewlineWhiteSpaces().isEmpty) else {
-            throw ValidateError.invalidData("Phone number Empty")
+            throw ValidateError.invalidData("Please enter a Phone number")
         }
         
-        guard !((txtPassword.text ?? "").isEmpty) else {
-            throw ValidateError.invalidData("Passoword is Empty")
+        guard (txtPassword.text != nil), let pwd = txtPassword.text else {
+            throw ValidateError.invalidData("Please enter a Password")
+        }
+        
+        guard (pwd.count >= 8) else {
+            throw ValidateError.invalidData("Please enter a Password with at least 8 characters")
+        }
+        
+        guard (txtConfirmPassword.text != nil), pwd == txtConfirmPassword.text else {
+            throw ValidateError.invalidData("Confirm password is invalid")
         }
         
         return true

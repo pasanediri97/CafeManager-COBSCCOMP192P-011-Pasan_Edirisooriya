@@ -47,6 +47,7 @@ class ForgotPasswordVC: BaseVC {
     
     func forgetPassowordNetworkRequest(){
         Auth.auth().sendPasswordReset(withEmail: txtEmail.text!) { error in
+            self.stopLoading()
             if let error = error {
                 let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -74,13 +75,13 @@ class ForgotPasswordVC: BaseVC {
     
     func validateForm() throws -> Bool {
         guard (txtEmail.text != nil), let value = txtEmail.text else {
-            throw ValidateError.invalidData("Invalid Email")
+            throw ValidateError.invalidData("Please enter an Email")
         }
         guard !(value.trimLeadingTralingNewlineWhiteSpaces().isEmpty) else {
-            throw ValidateError.invalidData("Email Empty")
+            throw ValidateError.invalidData("Please enter valid Email")
         }
         guard isValidEmailAddress(email: value) else {
-            throw ValidateError.invalidData("Invalid Email")
+            throw ValidateError.invalidData("Please enter valid Email")
         }
         return true
     }

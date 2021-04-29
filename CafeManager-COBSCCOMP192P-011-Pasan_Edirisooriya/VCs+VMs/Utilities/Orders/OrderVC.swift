@@ -171,5 +171,10 @@ extension OrderVC:UITableViewDelegate,UITableViewDataSource{
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor(named: "#9B870C")!
+    }
+
+    
 }
 

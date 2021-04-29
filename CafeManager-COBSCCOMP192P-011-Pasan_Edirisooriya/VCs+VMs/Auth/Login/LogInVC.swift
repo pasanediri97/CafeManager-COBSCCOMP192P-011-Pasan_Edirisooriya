@@ -39,7 +39,7 @@ class LogInVC: BaseVC {
     
     @IBAction func didTappedOnLogin(_ sender: Any) {
         do {
-            if try validateForm() {
+            if try validateLogin() {
                 startLoading()
                 loginRequest()
             }
@@ -84,7 +84,7 @@ class LogInVC: BaseVC {
     //MARK: Validate Login User
     public func validateLoginUser(completion: (_ status: Bool, _ message: String) -> ()) {
         do {
-            if try validateForm() {
+            if try validateLogin() {
                 completion(true, "Success")
             }
         } catch ValidateError.invalidData(let message) {
@@ -94,18 +94,18 @@ class LogInVC: BaseVC {
         }
     }
     
-    func validateForm() throws -> Bool {
+    func validateLogin() throws -> Bool {
         guard (txtEmail.text != nil), let value = txtEmail.text else {
-            throw ValidateError.invalidData("Invalid Email")
+            throw ValidateError.invalidData("Please enter a valid Email")
         }
         guard !(value.trimLeadingTralingNewlineWhiteSpaces().isEmpty) else {
-            throw ValidateError.invalidData("Email Empty")
+            throw ValidateError.invalidData("Please enter an email")
         }
         guard isValidEmailAddress(email: value) else {
-            throw ValidateError.invalidData("Invalid Email")
+            throw ValidateError.invalidData("Please enter a valid Email")
         }
         guard !((txtPassword.text ?? "").isEmpty) else {
-            throw ValidateError.invalidData("Passowrd is Empty")
+            throw ValidateError.invalidData("Please enter a passoword")
         }
         return true
     }
