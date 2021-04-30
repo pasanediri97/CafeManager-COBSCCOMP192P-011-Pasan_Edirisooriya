@@ -20,48 +20,50 @@ class CafeManager_COBSCCOMP192P_011_Pasan_EdirisooriyaUITests: XCTestCase {
     
     //MARK:Sign Up Test Case
     func testSignUp(){
+        
         let app = XCUIApplication()
         let elementsQuery = app.scrollViews.otherElements
         elementsQuery/*@START_MENU_TOKEN@*/.staticTexts["Sign Up"]/*[[".buttons[\"Sign Up\"].staticTexts[\"Sign Up\"]",".staticTexts[\"Sign Up\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         
-        let registerButton = elementsQuery.buttons["REGISTER"]
-        registerButton.tap()
+        let emailTextField = elementsQuery.textFields["Email"]
+        emailTextField.tap()
+        elementsQuery.buttons["REGISTER"].tap()
+        app.alerts["Error"].scrollViews.otherElements.buttons["OK"].tap()
+        emailTextField.tap()
+        
+        let phoneNumberTextField = elementsQuery.textFields["Phone Number"]
+        phoneNumberTextField.tap()
+        phoneNumberTextField.tap()
+        
+        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
+        passwordSecureTextField.tap()
+        passwordSecureTextField.tap()
+        
+        let confirmPasswordSecureTextField = elementsQuery.secureTextFields["Confirm Password"]
+        confirmPasswordSecureTextField.tap()
+        confirmPasswordSecureTextField.tap()
+
+        
+    }
+    
+    //MARK:Login Test Case
+    func testLogin(){
+        
+        let app = XCUIApplication()
+        let elementsQuery = app.scrollViews.otherElements
+        let loginStaticText = elementsQuery/*@START_MENU_TOKEN@*/.staticTexts["LOGIN"]/*[[".buttons[\"LOGIN\"].staticTexts[\"LOGIN\"]",".staticTexts[\"LOGIN\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        loginStaticText.tap()
         
         let okButton = app.alerts["Error"].scrollViews.otherElements.buttons["OK"]
         okButton.tap()
         elementsQuery.textFields["Email"].tap()
         
-        let registerStaticText = elementsQuery/*@START_MENU_TOKEN@*/.staticTexts["REGISTER"]/*[[".buttons[\"REGISTER\"].staticTexts[\"REGISTER\"]",".staticTexts[\"REGISTER\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        registerStaticText.tap()
+        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
+        passwordSecureTextField.tap()
+        passwordSecureTextField.tap()
+        loginStaticText.tap()
         okButton.tap()
-        elementsQuery.textFields["Phone Number"].tap()
-        registerButton.tap()
-        okButton.tap()
-        elementsQuery.secureTextFields["Password"].tap()
-        registerStaticText.tap()
-        okButton.tap()
-        elementsQuery.secureTextFields["Confirm Password"].tap()
-        registerStaticText.tap()
-    }
-    
-    //MARK:Login Test Case
-    func testLogin(){
-        let app = XCUIApplication()
-        let scrollViewsQuery = app.scrollViews
-        let elementsQuery = scrollViewsQuery.otherElements
-        let loginButton = elementsQuery.buttons["LOGIN"]
-        loginButton.tap()
-        
-        let okButton = app.alerts["Error"].scrollViews.otherElements.buttons["OK"]
-        okButton.tap()
-        
-        let element = scrollViewsQuery.otherElements.containing(.button, identifier:"LOGIN").children(matching: .other).element(boundBy: 0)
-        element.children(matching: .other).element(boundBy: 0).children(matching: .other).element.children(matching: .textField).element.tap()
-        loginButton.tap()
-        okButton.tap()
-        elementsQuery.staticTexts["Password"].tap()
-        element.children(matching: .other).element(boundBy: 1).children(matching: .other).element.children(matching: .secureTextField).element.tap()
-        elementsQuery/*@START_MENU_TOKEN@*/.staticTexts["LOGIN"]/*[[".buttons[\"LOGIN\"].staticTexts[\"LOGIN\"]",".staticTexts[\"LOGIN\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+ 
     }
  
     //MARK:Forgot Password Test Case
